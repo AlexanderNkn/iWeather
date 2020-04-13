@@ -1,2 +1,2 @@
-# weather_forecast
+# iWeather
 Умный сервис прогноза погоды
