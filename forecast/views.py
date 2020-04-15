@@ -26,8 +26,7 @@ def get_weather(request):
         except requests.ConnectionError as e:
             return HttpResponse(f'<сетевая ошибка - {e}>')
         if response.status_code == 200:
-#            return HttpResponse(response)
-            return render(request, 'index.html', {'response': response.json, 'form': form})
+            return render(request, 'index.html', {'response': response.text, 'form': form})
         else:
             return HttpResponse(f'<ошибка на сервере погоды, код {response.status_code}>')
     else:
