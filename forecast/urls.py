@@ -3,5 +3,6 @@ from . import views
 
 
 urlpatterns = [
-    path('', views.index, name='index')
+    path('', views.CityView.as_view(), name='city'),
+    path('fore/', views.fore, name='add_comment'),
 ]
