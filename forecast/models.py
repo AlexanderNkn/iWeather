@@ -20,4 +20,4 @@ class City(models.Model):
 class CityForm(ModelForm):
     class Meta:
         model = City
-        fields = ['city', 'period']
+        fields = ['city',] # 'period']
