@@ -1,3 +1,4 @@
+{% load mathfilters %}
 <!doctype html>
 <html>
     <head>
@@ -8,8 +9,8 @@
     <body>
         <main>
             <div class="container">
-                <p><b>Мы поможем вам быстро определить погоду в вашем населенном пункте и
-                    посоветуем, что необходимо надеть сегодня на улицу,
+                <p><b>Мы поможем вам быстро определить погоду в вашем населенном пункте и посоветуем,
+                    <br> что необходимо надеть сегодня на улицу,
                     чтобы чувствовать себя комфортно.</b></p>
                 <form method="POST">
                     {% csrf_token %}
@@ -17,9 +18,27 @@
                     <input type="submit" value="Отправить">
                 </form>
             </div>
+            <br>
+            {% if weather %}
             <div class="container">
-                {{ response }}
+                <p><b>Погода в г. {{ weather.name }}:</b></p>
+                <p>За окном {{ weather.weather.0.description }}
+                <br>Температура воздуха {{ weather.main.temp|floatformat:0 }}°
+                <br>Ощущается как {{ weather.main.feels_like|floatformat:0 }}°
+                <br>Ветер {% if weather.wind.deg <= 22.5 %}"С"
+                        {% elif weather.wind.deg <= 67.5 %}"СВ"
+                        {% elif weather.wind.deg <= 112.5 %}"В"
+                        {% elif weather.wind.deg <= 157.5 %}"ЮВ"
+                        {% elif weather.wind.deg <= 202.5 %}"Ю"
+                        {% elif weather.wind.deg <= 247.5 %}"ЮЗ"
+                        {% elif weather.wind.deg <= 292.5 %}"З"
+                        {% elif weather.wind.deg <= 337.5 %}"СЗ"
+                        {% else %}"С"
+                        {% endif %} {{ weather.wind.speed|floatformat:1 }}м/с
+                <br>Давление {{ weather.main.pressure|mul:0.750062|floatformat:0 }}мм рт.ст.
+                <br>Влажность {{ weather.main.humidity }}%</p>
             </div>
+            {% endif %} 
         </main>
     </body>
 </html>

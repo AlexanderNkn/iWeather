@@ -1,4 +1,3 @@
 Django
-pylint
-pylint-django
 requests
+django-mathfilters
