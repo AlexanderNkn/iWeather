@@ -38,6 +38,10 @@
                 <br>Давление {{ weather.main.pressure|mul:0.750062|floatformat:0 }}мм рт.ст.
                 <br>Влажность {{ weather.main.humidity }}%</p>
             </div>
+            <div class="container">
+                <p><b>Что надеть сегодня?</b></p>
+                {{ wear }}
+            </div>
             {% endif %} 
         </main>
     </body>
