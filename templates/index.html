@@ -5,10 +5,17 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Умная погода</title>
+        {% load static %}
+        <link rel="icon" href="{% static 'img/favicon.ico' %}"><!--добавил свою иконку, так как сервер постоянно пытался найти, и возвращал ошибку 500-->
+        <!-- <link rel="icon" href="data:;base64,="> а таким образом можно добавить пустую иконку-->
+        <link rel="stylesheet" href="{% static 'bootstrap/dist/css/bootstrap.min.css' %}">
+        <script src="{% static 'jquery/dist/jquery.min.js' %}"></script>
+        <script src="{% static 'bootstrap/dist/js/bootstrap.min.js' %}"></script>
     </head>
     <body>
         <main>
-            <div class="container">
+            <div class="container" style="background-image: url('https://source.unsplash.com/twukN12EN7c/1920x1080'); background-size: 150%;">
+            
                 <p><b>Мы поможем вам быстро определить погоду в вашем населенном пункте и посоветуем,
                     <br> что необходимо надеть сегодня на улицу,
                     чтобы чувствовать себя комфортно.</b></p>
@@ -17,10 +24,10 @@
                     <p>Укажите город {{ form }}</p>
                     <input type="submit" value="Отправить">
                 </form>
-            </div>
+            
             <br>
             {% if weather %}
-            <div class="container">
+            
                 <p><b>Погода в г. {{ weather.name }}:</b></p>
                 <p>За окном {{ weather.weather.0.description }}
                 <br>Температура воздуха {{ weather.main.temp|floatformat:0 }}°
@@ -37,12 +44,13 @@
                         {% endif %} {{ weather.wind.speed|floatformat:1 }}м/с
                 <br>Давление {{ weather.main.pressure|mul:0.750062|floatformat:0 }}мм рт.ст.
                 <br>Влажность {{ weather.main.humidity }}%</p>
-            </div>
-            <div class="container">
+            
+            
                 <p><b>Что надеть сегодня?</b></p>
                 {{ wear }}
-            </div>
+            
             {% endif %} 
+            </div>
         </main>
     </body>
 </html>
