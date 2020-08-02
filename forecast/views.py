@@ -29,6 +29,8 @@ def get_weather(request):
             return HttpResponse(f'<сетевая ошибка - {e}>')
         if response.status_code == 451:
             return HttpResponse('<Превышено количество обращений к серверу погоды. Перезагрузите страницу.>')
+        if response.status_code == 404:
+            return HttpResponse('<Указанного города не существует, проверьте карту.>')
         if response.status_code == 200:
             weather = response.json()
             wear = get_wear(weather)
