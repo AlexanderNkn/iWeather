@@ -14,11 +14,11 @@
     </head>
     <body>
         <main>
-            <div class="container" style="background-image: url('https://source.unsplash.com/twukN12EN7c/1920x1080'); background-size: 150%;">
+            <div class="container" style="height: 100%; background-image: url('https://i.ibb.co/YP5gmNW/weather3-1.jpg'); background-size:cover; background-repeat: no-repeat; background-position: center;">
             
-                <p><b>Мы поможем вам быстро определить погоду в вашем населенном пункте и посоветуем,
-                    <br> что необходимо надеть сегодня на улицу,
-                    чтобы чувствовать себя комфортно.</b></p>
+                <h4>Мы поможем вам быстро определить погоду в вашем населенном пункте и посоветуем,
+                    что необходимо надеть сегодня на улицу,
+                    чтобы чувствовать себя комфортно.</h4>
                 <form method="POST">
                     {% csrf_token %}
                     <p>Укажите город {{ form }}</p>
@@ -28,7 +28,7 @@
             <br>
             {% if weather %}
             
-                <p><b>Погода в г. {{ weather.name }}:</b></p>
+                <h4>Погода в г. {{ weather.name }}:</h4>
                 <p>За окном {{ weather.weather.0.description }}
                 <br>Температура воздуха {{ weather.main.temp|floatformat:0 }}°
                 <br>Ощущается как {{ weather.main.feels_like|floatformat:0 }}°
@@ -46,7 +46,7 @@
                 <br>Влажность {{ weather.main.humidity }}%</p>
             
             
-                <p><b>Что надеть сегодня?</b></p>
+                <h4>Что надеть сегодня?</h4>
                 {{ wear }}
             
             {% endif %} 
